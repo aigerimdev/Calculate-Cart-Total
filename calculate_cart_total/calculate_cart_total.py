@@ -23,7 +23,6 @@ def calculate_total(cart):
             total += prices[item]
     return total
 
-
 # print(calculate_total(["Tomato", "Tomato", "Tomato"]))
 # print(calculate_total(["tomato"]))  # Banana not in prices
 # print(calculate_total(["tomato"]))  # Will not match "Tomato"
@@ -31,7 +30,7 @@ def calculate_total(cart):
 # print(calculate_total(["Tomato"] * 1000))  # Check performance and total
 # print(calculate_total([123, None, "Apple"]))  # Should ignore or raise error
 
-# print(calculate_total(["Unknown"]))  # Should ignore or raise error?
+print(calculate_total([]))
 # print(calculate_total(["Tomato", "Apple", "Tomato"]))  # Sum twice for Tomato
 # [("Apple", 2), ("Tomato", -1)] # Invalid
 

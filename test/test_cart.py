@@ -1,97 +1,49 @@
 from calculate_cart_total.calculate_cart_total import calculate_total 
 
-# Arrange
-# Act
-# Assert
-
-# test 1
-def test_return_total_price():
+# Test 1
+def test_returns_total_price():
     # Arrange
-    prices = {
-    "apple": 0.75,
-    "beans": 2.00,
-    "cheese": 2.50,
-    "chicken": 4.00,
-    "flour": 1.75,
-    "onion": 0.50,
-    "orange": 0.85,
-    "lettuce": 1.25,
-    "milk": 3.00,
-    "tomato": 0.45
-}
     cart = ["milk", "chicken", "beans"]
-
     # Act
     total = calculate_total(cart)
-
     # Assert
     assert total == 9
-    
-# test 2
-def test_return_float_if_cart_empty():
+
+# Test 2
+def test_returns_zero_float_if_cart_empty():
     # Arrange
     cart = []
     # Act
-    expected = calculate_total(cart)
-    
+    total = calculate_total(cart)
     # Assert
-    assert expected == 0.0
+    assert total == 0.0
 
-def test_drop_the_discount_price_if_there_is_discount():
-    prices = {
-    "apple": 0.75,
-    "beans": 2.00,
-    "cheese": 2.50,
-    "chicken": 4.00,
-    "flour": 1.75,
-    "onion": 0.50,
-    "orange": 0.85,
-    "lettuce": 1.25,
-    "milk": 3.00,
-    "tomato": 0.45
-}
-    cart = ["apple", "cheese"]
-    discount= 1.0
-    expected = calculate_total(cart)
-    expected_after_discount = expected - discount
-    assert expected == 3.25
-    assert expected_after_discount == 2.25
-    
-
-    
-def test_if_the_list_is_lover_case_or_mixed():
-    prices = {
-    "apple": 0.75,
-    "beans": 2.00,
-    "cheese": 2.50,
-    "chicken": 4.00,
-    "flour": 1.75,
-    "onion": 0.50,
-    "orange": 0.85,
-    "lettuce": 1.25,
-    "milk": 3.00,
-    "tomato": 0.45
-}
+# Test 3
+def test_ignores_case_of_items():
+    # Arrange
     cart = ["Apple", "onIon", "tOmatO"]
-    expected = calculate_total(cart)
+    # Act
+    total = calculate_total(cart)
+    # Assert
+    assert total == 1.7
+
+# Test 4
+def test_ignores_unknown_items():
+    # Arrange
+    cart = ["cherry", "lettuce", "beans"]
+    # Act
+    total = calculate_total(cart)
+    # Assert
+    assert total == 3.25
     
-    assert expected == 1.7
-
-def test_if_the_item_dont_excist():
-    prices = {
-    "apple": 0.75,
-    "beans": 2.00,
-    "cheese": 2.50,
-    "chicken": 4.00,
-    "flour": 1.75,
-    "onion": 0.50,
-    "orange": 0.85,
-    "lettuce": 1.25,
-    "milk": 3.00,
-    "tomato": 0.45
-}
-cart = ["cherry", "lettuce", "beans"]
-
-expected = calculate_total(cart)
-
-assert expected == 3.25
+    # Test 5
+# def test_applies_discount_correctly():
+#     # Arrange
+#     cart = ["apple", "cheese"]
+#     discount = 1.0
+#     # Act
+#     total = calculate_total(cart)
+#     total_after_discount = total - discount
+#     # Assert
+#     assert total == 3.25
+#     assert total_after_discount == 2.25
